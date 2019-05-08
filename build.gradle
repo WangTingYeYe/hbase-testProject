@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        maven{ url 'http://nexus.dui88.com:8081/nexus/content/groups/public/'}
+        maven{ url 'http://nexus.dui88.com:8081/nexus/content/repositories/snapshots'}
+        maven { url "https://plugins.gradle.org/m2/" } //sonarqube
+        //        mavenLocal()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE"
+    }
+}
+plugins {
+    id 'java'
+}
+
+group 'duiba.test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    repositories {
+        mavenLocal()
+        maven { url "http://nexus.dui88.com:8081/nexus/content/groups/public/" }
+        mavenCentral()
+        jcenter()
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('com.aliyun.hbase:alihbase-client:1.1.2')
+    
+    compile('com.alibaba:fastjson:1.2.32')
+//    compile('cn.com.duiba.boot:spring-boot-ext-dependencies:1.2.276')
+//    compile('org.springframework.boot:spring-boot-dependencies:1.5.12.RELEASE')
+    compile('org.apache.commons:commons-lang3:3.5')
+    compile 'org.springframework:spring-context:5.0.6.RELEASE'
+    compile('org.apache.logging.log4j:log4j-api:2.7') { transitive = false }
+    compile('org.apache.logging.log4j:log4j-core:2.7') { transitive = false }
+    compile('com.alibaba.jstorm:jstorm-core:2.2.1')
+    compile('org.apache.httpcomponents:httpclient:4.5.3')
+}
